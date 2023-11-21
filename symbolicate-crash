@@ -89,7 +89,7 @@ def symbolicate_crash_cmd(args):
     failed_binaries = {}
     for i in range(len(crash_lines)):
         # example (crash report): 1   libguimodel.dylib                0x006ee72a 0x64d000 + 661290
-        rxm = re.search(r'''^\d+ \s+ (\S+) \s+ (0x[0-9a-fA-F]+) \s+ ([^\n\r\t]+)''', crash_lines[i], flags=re.X)
+        rxm = re.search(r'''^\d+ \s+ ([0-9a-zA-Z\-_. ]+[0-9a-zA-Z]) \s+ (0x[0-9a-fA-F]+) \s+ ([^\n\r\t]+)''', crash_lines[i], flags=re.X)
         if rxm:
             name, hexaddr, needle = rxm.groups()
             if name in failed_binaries:
